@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://ning019.github.io</id>
     <title>Gridea</title>
-    <updated>2021-10-04T05:30:41.968Z</updated>
+    <updated>2021-10-04T05:46:46.404Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://ning019.github.io"/>
     <link rel="self" href="https://ning019.github.io/atom.xml"/>
@@ -10,6 +10,48 @@
     <logo>https://ning019.github.io/images/avatar.png</logo>
     <icon>https://ning019.github.io/favicon.ico</icon>
     <rights>All rights reserved 2021, Gridea</rights>
+    <entry>
+        <title type="html"><![CDATA[国庆七天乐‘bushi’（四）]]></title>
+        <id>https://ning019.github.io/post/guo-qing-qi-tian-le-bushisi/</id>
+        <link href="https://ning019.github.io/post/guo-qing-qi-tian-le-bushisi/">
+        </link>
+        <updated>2021-10-04T05:31:57.000Z</updated>
+        <content type="html"><![CDATA[<p><a href="%22https://vjudge.ppsucxtt.cn/contest/460444#problem/D%22">D - Decimal</a><br>
+大意：<br>
+给你一个数n，求n分之一是有限小数还是无线小数</p>
+<p>题解：<br>
+算法原理：最简分数的分母如果是2<sup>x</sup>×5<sup>y</sup> (x&gt;=0&amp;&amp;x属于整数，y&gt;=0&amp;&amp;y属于整数)这个分数就是有限小数，否则是无线小数。</p>
+<p>代码实现：</p>
+<pre><code>#include&lt;bits/stdc++.h&gt;
+using namespace std;
+bool f(int n)
+{
+	if(n==1) return 0;
+	else if(n%2==0)
+	{
+		return f(n/2);
+	}
+	else if(n%5==0)
+	{
+		return f(n/5);
+	}
+	else return 1;
+}
+
+int main()
+{
+	int tt,n;
+	cin&gt;&gt;tt;
+	while(tt--)
+	{
+		scanf(&quot;%d&quot;,&amp;n);
+		if(f(n)==1) printf(&quot;Yes\n&quot;);
+		else printf(&quot;No\n&quot;);
+	}
+}
+</code></pre>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[国庆七天乐‘bushi’（三）]]></title>
         <id>https://ning019.github.io/post/guo-qing-qi-tian-le-bushisan/</id>
