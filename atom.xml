@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://ning019.github.io</id>
     <title>Gridea</title>
-    <updated>2021-10-04T05:59:42.673Z</updated>
+    <updated>2021-10-04T14:05:04.042Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://ning019.github.io"/>
     <link rel="self" href="https://ning019.github.io/atom.xml"/>
@@ -18,7 +18,7 @@
         <updated>2021-10-04T05:31:57.000Z</updated>
         <content type="html"><![CDATA[<p><a href="%22https://vjudge.ppsucxtt.cn/contest/460444#problem/D%22">D - Decimal</a><br>
 大意：<br>
-给你一个数n，求n分之一是有限小数还是无线小数</p>
+给你一个数n，求n分之一是有限小数还是无限小数</p>
 <p>题解：<br>
 算法原理：最简分数的分母如果是2<sup>x</sup>×5<sup>y</sup> (x&gt;=0&amp;&amp;x属于整数，y&gt;=0&amp;&amp;y属于整数)这个分数就是有限小数，否则是无线小数。</p>
 <p>代码实现：</p>
@@ -50,6 +50,17 @@ int main()
 	}
 }
 </code></pre>
+<p><a href="%22https://vjudge.ppsucxtt.cn/contest/460444#problem/F%22">F - Forest Program</a><br>
+大意：给你一个无向图的点和边，这个无向图是由仙人掌图构成的（可能不连通）问你有多少种选择，去掉某些边能形成由树构成的图。</p>
+<p>仙人掌图：如果某个无向连通图的任意一条边至多只出现在一条简单回路（simple cycle）里，我们就称这张图为仙人图（cactus）。所谓简单回路就是指在图上不重复经过任何一个顶点的回路。<img src="https://ning019.github.io/post-images/1633353622900.png" alt="" loading="lazy"></p>
+<p>算法思路：<br>
+孤立点：0<br>
+n条不构成环的线段：2<sup>n</sup><br>
+三角形：c(3,1)+c(3,2)+c(3,3)=2<sup>3</sup>-1<br>
+四角形：c(4,1)+c(4,2)+c(4,3)+c(4,4)=2<sup>4</sup>-1<br>
+沙漏型：(2<sup>3</sup>-1)*(2<sup>3</sup>-1)</p>
+<p>---&gt;找每个环的边数</p>
+<p>随便找一个点作起点，用dfs不断搜，直到搜到一个以前搜过的点(线段不算)，用dist[i]记录走过的路径条数，现在的长度减去上次的长度就是环的长度。</p>
 ]]></content>
     </entry>
     <entry>
