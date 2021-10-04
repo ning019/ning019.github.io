@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://ning019.github.io</id>
     <title>Gridea</title>
-    <updated>2021-10-03T09:00:19.117Z</updated>
+    <updated>2021-10-04T00:48:35.094Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://ning019.github.io"/>
     <link rel="self" href="https://ning019.github.io/atom.xml"/>
@@ -10,6 +10,110 @@
     <logo>https://ning019.github.io/images/avatar.png</logo>
     <icon>https://ning019.github.io/favicon.ico</icon>
     <rights>All rights reserved 2021, Gridea</rights>
+    <entry>
+        <title type="html"><![CDATA[国庆七天乐‘bushi’（三）]]></title>
+        <id>https://ning019.github.io/post/guo-qing-qi-tian-le-bushisan/</id>
+        <link href="https://ning019.github.io/post/guo-qing-qi-tian-le-bushisan/">
+        </link>
+        <updated>2021-10-03T13:26:39.000Z</updated>
+        <content type="html"><![CDATA[<p><a href="https://vjudge.ppsucxtt.cn/contest/460442#problem/F">F - Hopscotch 50(跳房子) </a><br>
+题意：给你一个n*n的矩阵和一个k，这个矩阵里面的数是1~k随机的，问你有没有一个从1一直跳到k的最短Manhattan distance（曼哈顿距离）,没有输出-1，有的话输出这个距离。</p>
+<p>样例：<br>
+10 5<br>
+5 1 3 4 2 4 2 1 2 1<br>
+4 5 3 4 1 5 3 1 1 4<br>
+4 2 4 1 5 4 5 2 4 1<br>
+5 2 1 5 5 3 5 2 3 2<br>
+5 5 2 3 2 3 1 5 5 5<br>
+3 4 2 4 2 2 4 4 2 3<br>
+1 5 1 1 2 5 4 1 5 3<br>
+2 2 4 1 2 5 1 4 3 5<br>
+5 3 2 1 4 3 5 2 3 1<br>
+3 4 2 5 2 5 3 4 4 2</p>
+<p>5</p>
+<p>初始想法：dfs</p>
+<ul>
+<li>找每一个1的位置，每一个2的位置·······，dfs挨个搜；</li>
+</ul>
+<p>误区：没估计时间复杂度，</p>
+<p>正确想法：</p>
+<ul>
+<li>一层循环计算本层某一坐标和上一层所有的坐标的最小距离；<br>
+<img src="https://ning019.github.io/post-images/1633308060766.png" alt="" loading="lazy"></li>
+<li>第二层循环计算第一步中”本层“的所有坐标的最小距离，每一个距离存入数组中；</li>
+<li>第三层循环这一层数</li>
+</ul>
+<pre><code>#include &lt;bits/stdc++.h&gt;
+using namespace std;
+
+int n,k,x;
+int dis[3000][3000];
+vector&lt;pair&lt;int, int&gt; &gt; xy[3000];
+
+int main()
+{
+	cin&gt;&gt;n&gt;&gt;k;
+	if(k==1)
+	{
+		printf(&quot;0&quot;);
+		return 0;
+	}
+	for(int i=0;i&lt;=2500;i++)
+	{
+		for(int j=0;j&lt;=2500;j++)
+		{
+			dis[i][j] = 0x3f3f3f3f;
+		}
+	}
+	for(int i=1;i&lt;=n;i++)
+	{
+		for(int j=1;j&lt;=n;j++)
+		{
+			scanf(&quot;%d&quot;,&amp;x);
+			xy[x].push_back({i,j});
+		}
+	}
+	for(int i=1;i&lt;=k;i++)
+	{
+		if(!xy[i].size())
+		{
+			printf(&quot;-1&quot;);
+			return 0;
+		}
+	}
+	for(int i=2;i&lt;=k;i++)
+	{
+		for(int j=0;j&lt;xy[i-1].size();j++)
+		{
+			for(int l=0;l&lt;xy[i].size();l++)
+			{
+				if(i!=2)
+				dis[i][l]=min(dis[i][l],dis[i-1][j]+abs(xy[i][l].first-xy[i-1][j].first)+abs(xy[i][l].second-xy[i-1][j].second));
+				else 
+				dis[i][l]=min(dis[i][l],abs(xy[i][l].first-xy[i-1][j].first)+abs(xy[i][l].second-xy[i-1][j].second));
+			}
+		}
+	}
+	int ans=0x3f3f3f3f;
+	for(int i=0;i&lt;xy[k].size();i++)
+	{
+		ans=min(ans,dis[k][i]);
+	}
+	cout&lt;&lt;ans;
+	return 0;
+}
+</code></pre>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Markdown基本语法]]></title>
+        <id>https://ning019.github.io/post/markdown-ji-ben-yu-fa/</id>
+        <link href="https://ning019.github.io/post/markdown-ji-ben-yu-fa/">
+        </link>
+        <updated>2021-10-03T13:12:31.000Z</updated>
+        <content type="html"><![CDATA[<p><a href="%22https://www.jianshu.com/p/191d1e21f7ed%22">Markdown基本语法</a></p>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[Hello Gridea]]></title>
         <id>https://ning019.github.io/post/hello-gridea/</id>
